@@ -83,6 +83,18 @@ export const isEventMatchingFilter = (filter: SubscriptionFilter) => (event: Eve
     }
   }
 
+  //NIP-128: GS1 Serialization
+  const serialized: string[] = event.tags.reduce(
+      (acc, tag) => (tag[0] === EventTags.Serialization)
+          ? [...acc, tag[1]]
+          : acc,
+      [] as string[]
+  )
+
+  if (serialized.length && !Array.isArray(filter['#s'])) {
+    return false
+  }
+
   // NIP-27: Multicast
   // const targetMulticastGroups: string[] = event.tags.reduce(
   //   (acc, tag) => (tag[0] === EventTags.Multicast)

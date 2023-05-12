@@ -36,6 +36,7 @@ export enum EventTags {
   Delegation = 'delegation',
   Deduplication = 'd',
   Expiration = 'expiration',
+  Serialization = 's',
   Invoice = 'bolt11',
 }
 
